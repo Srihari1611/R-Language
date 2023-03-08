@@ -1,0 +1,24 @@
+---
+title: "22238_MDSC_201_Assignment 4"
+output: html_notebook
+---
+
+```{r}
+print("Experimenting with the plots in R")
+plot(cars)
+```
+
+```{r}
+vol <- c(21, 62, 10, 53)
+
+lab <- c("Strawberry", "Chocolate", "Orange", "Vanilla")
+
+colo <- c("pink", "brown", "orange", "grey")
+
+pie(x=vol,labels = lab, radius = 1, col = colo)
+legend("topright", c("Strawberry", "Chocolate", "Orange", "Vanilla"), cex = 0.7, fill = colo)
+```
+
+```{r}
+
+```
