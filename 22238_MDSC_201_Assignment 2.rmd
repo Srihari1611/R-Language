@@ -1,0 +1,154 @@
+---
+title: "Assignment 2"
+author: "Srihari.M"
+date: "2023-03-08"
+output: html_document
+---
+
+```{r}
+vec1 <- c(1,2,3,4)
+vec2 <- c(5,6,7,8)
+print(vec1+vec2)
+```
+
+```{r}
+vec1 <- c(1,2,3,4)
+vec2 <- c(5,6,7,8)
+print(vec1-vec2)
+```
+
+```{r}
+vec1 <- c(1,2,3,4)
+vec2 <- c(5,6,7,8)
+print(vec1*vec2)
+```
+
+```{r}
+vec1 <- c(1,2,3,4)
+vec2 <- c(5,6,7,8)
+print(vec1/vec2)
+```
+
+```{r}
+vec1 <- c(1,2,3,4)
+vec2 <- c(5,6,7,8)
+print(vec1%%vec2)
+```
+
+```{r}
+vec1 <- c(5,6,7,8)
+vec2 <- c(1,2,3,4)
+print(vec1%/%vec2)
+```
+
+```{r}
+s <- 0:12
+print(s)
+```
+
+```{r}
+a = 5
+b = 15
+c = 1:10
+print(a %in% c)
+
+print(b %in% c)
+```
+
+```{r}
+mat1 = matrix(c(1,0,0,2), nrow = 2, ncol = 2, byrow = TRUE)
+mul = mat1 %*% t(mat1)
+
+print(mul)
+```
+
+```{r}
+x <- 10
+
+if(x>5)
+{
+  print("The number is greater than 5")
+}
+```
+
+```{r}
+i <-0
+while (i<=5) {
+  print(i)
+  i <- i+1
+}
+```
+
+```{r}
+count <- 0
+sen <- c("Let's start R programming")
+
+repeat
+{
+  print(sen)
+  count <- count+1
+  
+  if (count>=5)
+  {break}
+}
+```
+
+```{r}
+alp = LETTERS[1:10]
+
+for(i in alp)
+{
+  print(i)
+}
+```
+
+```{r}
+alp = LETTERS[1:10]
+
+for(i in alp)
+{
+  print(i)
+  if(i == "E")
+  {
+    break
+  }
+}
+```
+
+```{r}
+alp = LETTERS[1:10]
+
+for(i in alp)
+{
+  if(i == "E")
+  {
+    next
+  }
+  print(i)
+}
+```
+
+```{r}
+df <- mtcars
+head(df)
+```
+
+```{r}
+summary(df)
+```
+
+```{r}
+sprintf("The mean of mpg from the data is : %f",mean(df$mpg))̥
+```
+
+```{r}
+library(ggplot2)
+ggplot(df, aes(x = mpg, y = qsec))+geom_point()
+```
+
+```{r}
+x <- df$mpg
+y <- df$qsec
+
+sprintf("Correlation of mpg and qsec is : %f",cor(x,y))
+```
