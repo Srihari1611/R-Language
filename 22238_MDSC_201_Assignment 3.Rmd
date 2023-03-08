@@ -1,0 +1,98 @@
+---
+title: "22238_MDSC_201_Assignment 3"
+author: "Srihari.M"
+output: html_document
+---
+
+```{r}
+squ <- function(n)
+{
+  for(i in 1:n)
+  {
+    ans <- i^2
+    print(ans)
+  }
+    
+}
+
+squ(2)
+```
+
+```{r}
+print("Square of first 10 elements!")
+
+squ <- function()
+{
+  for(i in 1:10)
+  {
+    ans <- i^2
+    print(ans)
+  }
+}
+
+squ()
+```
+
+```{r}
+print("function printing x*y+z^2")
+
+exp <- function(x,y,z)
+{
+  ans <- x*y+z^2
+  print(ans)
+  sprintf("x = %f, y = %f, z = %f",x,y,z)
+}
+exp(x=2,y=3,z=4)
+```
+
+```{r}
+print("Function to multiply 2 values")
+mul <- function(x,y)
+{
+  ans <- x*y
+  print(ans)
+  sprintf("x = %f, y = %f",x,y)
+}
+
+mul(x=2,y=4)
+```
+
+```{r}
+print("A function to print the values passed and the square of the first element")
+
+exp <- function(a,b)
+{
+  ans <- a^2
+  cat("The square of first element : ",ans)
+  cat("\n\n")
+  sprintf("\n\nThe values passed to the function : A = %f, B = %f", a,b)
+}
+
+exp(a=10,b=20)
+```
+
+```{r}
+print("Experimenting with String in R")
+
+cat("\n\n\n\n")
+
+mes1 <- "Hi!, This is Srihari"
+
+mes2 <- "Do you want to learn a new language?"
+
+mes3 <- "Let's learn R language"
+
+print(mes1)
+
+cat("\n\n")
+
+print(mes2)
+
+cat("\n\n")
+
+print(mes3)
+```
+
+```{r}
+
+```
