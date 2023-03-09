@@ -20,5 +20,88 @@ legend("topright", c("Strawberry", "Chocolate", "Orange", "Vanilla"), cex = 0.7,
 ```
 
 ```{r}
+colors = c("blue", "orange", "brown")
+months <- c("Mar", "Apr", "May", "Jun", "Jul")
+regions <- c("Region 1", "Region 2", "Region 3")
 
+Values <- matrix(c(2, 9, 3, 11, 9, 4, 8, 7, 3, 12, 5, 2, 8, 10, 11), 
+                 nrow = 3, ncol = 5, byrow = TRUE)
+
+barplot(Values, main = "Total Revenue", names.arg = months, 
+                          xlab = "Month", ylab = "Revenue", 
+                          col = colors, beside = TRUE)
+
+legend("topleft", regions, cex = 0.7, fill = colors)
+```
+
+```{r}
+
+dat <- read.table(text = "A   B   C   D   E   F    G
+1 10 80 30 90 70 60  90
+2 20 50 70 50 40 10  40
+3 60 80 80 60  60 30 160
+4 20 40 70 80 20 10  70", header = TRUE)
+  
+barplot(as.matrix(dat),col = c("darkcyan", "cadetblue4", "cadetblue", "cadetblue1"))
+```
+
+```{r}
+print(airquality)
+boxplot(Temp~Month,
+data=airquality,
+main="Box plot depicting temperature of each month",
+xlab="Month",
+ylab="Degree Fahrenheit",
+col="brown",
+border="black"
+)
+```
+
+```{r}
+hist(airquality$Temp,
+main="Maximum daily temperature at La Guardia Airport",
+xlab="Temperature in degrees Fahrenheit",
+xlim=c(50,100),
+col="darkcyan",
+freq=FALSE
+)
+```
+
+```{r}
+x <- 1:10
+y1 <- x*x
+y2  <- 2*y1
+
+
+plot(x, y1,main = "Line plot in R", type = "b", frame = FALSE, pch = 19, 
+     col = "red", xlab = "x", ylab = "y")
+
+lines(x, y2, pch = 18, col = "blue", type = "b", lty = 2)
+
+legend("topleft", legend=c("Line 1", "Line 2"),
+       col=c("red", "blue"), lty = 1:2, cex=0.8)
+```
+
+```{r}
+attach(mtcars)
+plot(wt, mpg, main="Scatterplot in R",
+   xlab="Weight of the car", ylab="Miles Per Gallon ", pch=19)
+```
+
+```{r}
+df <- mtcars
+print(df)
+cat("Means of the miles per gallon : ", mean(df$mpg))
+
+cat("\n\n")
+
+cat("Median of weight of the car dataset : ", median(df$wt))
+
+cat("\n\n")
+
+cat("Mode of the weight from the car dataset : ", names(sort(-table(df$wt)))[1])
+
+cat("\n\n")
+
+cat("Quantiles of the weight: ",quantile(df$wt))
 ```
