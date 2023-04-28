@@ -1,0 +1,149 @@
+---
+title: "22238_MDSC_201_Final_Lab_Excercise"
+output: html_notebook
+---
+
+```{r}
+#Library for plotting
+library(ggplot2)
+#library for Data manipulation
+library(dplyr)
+library(broom)
+```
+
+```{r}
+print(income.data)
+```
+
+```{r}
+#Displaying the summary of the dataset
+#It shows us the minimum value, 1st quatile, median, mean, 3rd quatile, maximum value
+summary(income.data)
+```
+
+```{r}
+#Displays the histogram of the happiness column
+hist(income.data$happiness,breaks = 25, col = c("#AE4380"))
+```
+
+```{r}
+#Plotting the scatter plot of the dataset with comparison of happiness to income
+plot(happiness ~ income, data = income.data,col = "red4")
+```
+
+```{r}
+#lm is used to fit the linear model
+LRMod <- lm(happiness ~ income, data = income.data)
+
+summary(LRMod)
+```
+
+```{r}
+a1 <- coef(LRMod)[1]
+xinc <- coef(LRMod)[2]
+
+print(a1)
+
+print(xinc)
+```
+
+```{r}
+xi = 6.8
+```
+
+```{r}
+y = a1+xinc*xi
+print(y)
+```
+
+```{r}
+library("ggplot2")
+
+graph1<-ggplot(income.data, aes(x=income, y=happiness))+
+                     geom_point()
+graph1
+```
+
+```{r}
+  
+graph2 <- graph1 + geom_smooth(method="lm", col="red4")
+```
+
+```{r}
+graph2 +
+  theme_bw() +
+  labs(title = "Reported happiness as a function of income",
+      x = "Income (x$10,000)",
+      y = "Happiness score (0 to 10)")
+```
+
+```{r}
+df2 <- mtcars[,c("mpg","wt","disp","hp")]
+print(df2)
+```
+
+```{r}
+print(summary(df2))
+```
+
+```{r}
+MRMod <- lm(mpg~wt+disp+hp, data = df1)
+print(MRMod)
+print(summary(MRMod))
+```
+
+```{r}
+a <- coef(MRMod)[1]
+
+
+xwt <- coef(MRMod)[2]
+xdisp <- coef(MRMod)[3]
+xhp <- coef(MRMod)[4]
+
+print(a)
+print(xwt)
+print(xdisp)
+print(xhp)
+```
+
+```{r}
+x1 = 2.91
+x2 = 221
+x3 = 102
+```
+
+```{r}
+y = a+xwt*x1+xdisp*x2+xhp*x3
+print(y)
+```
+
+```{r}
+graph3<-ggplot(df2, aes(x=mpg, y=wt+disp+hp))+
+                     geom_point()
+graph3
+```
+
+```{r}
+graph4 <- graph3 + geom_smooth(method="lm", col="red4")
+```
+
+```{r}
+graph4 +
+  theme_bw() +
+  labs(title = "mpg with wt,disp and hp",
+      x = "MPG",
+      y = "wt, disp and hp")
+```
+
+# Logistic Regression
+
+```{r}
+df3 <- mtcars[,c("am","cyl","hp","wt")]
+print(df3)
+```
+
+```{r}
+LOGMod = glm(formula = am ~ cyl + hp + wt, data = df3, family = binomial)
+
+print(summary(LOGMod))
+```
