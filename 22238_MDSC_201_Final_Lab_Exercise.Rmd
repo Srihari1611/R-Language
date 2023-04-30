@@ -1,6 +1,8 @@
 ---
 title: "22238_MDSC_201_Final_Lab_Excercise"
-output: html_notebook
+output:
+  pdf_document: default
+  html_notebook: default
 ---
 
 ```{r}
@@ -9,6 +11,7 @@ library(ggplot2)
 #library for Data manipulation
 library(dplyr)
 library(broom)
+library(pROC)
 ```
 
 ```{r}
@@ -87,7 +90,7 @@ print(summary(df2))
 ```
 
 ```{r}
-MRMod <- lm(mpg~wt+disp+hp, data = df1)
+MRMod <- lm(mpg~wt+disp+hp, data = df2)
 print(MRMod)
 print(summary(MRMod))
 ```
@@ -135,8 +138,6 @@ graph4 +
       y = "wt, disp and hp")
 ```
 
-# Logistic Regression
-
 ```{r}
 df3 <- mtcars[,c("am","cyl","hp","wt")]
 print(df3)
@@ -146,4 +147,55 @@ print(df3)
 LOGMod = glm(formula = am ~ cyl + hp + wt, data = df3, family = binomial)
 
 print(summary(LOGMod))
+```
+
+```{r}
+roc_obj <- roc(mtcars$am, predict(LOGMod, type = "response", newdata = mtcars))
+plot(roc_obj)
+```
+
+# Poisson Regression
+
+```{r}
+library(MASS)
+data(Insurance)
+```
+
+```{r}
+head(Insurance)
+```
+
+```{r}
+POIMod <- glm(Claims ~ District + Group + Age + Holders, data = Insurance, family = poisson())
+```
+
+```{r}
+summary(POIMod)
+```
+
+```{r}
+ggplot(data = Insurance, aes(x = Claims, y = fitted(POIMod))) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm", se = FALSE, color = "cyan4") +
+  ggtitle("Fitted values vs. Observed values") +
+  xlab("Observed values") +
+  ylab("Fitted values")
+```
+
+```{r}
+pred <- predict(POIMod, type = "response")
+residuals <- Insurance$Claims - pred
+```
+
+```{r}
+plot(POIMod$fitted.values, residuals, main = "Residuals vs. Fitted Values", xlab = "Fitted Values", 
+            ylab = "Residuals")
+
+```
+
+```{r}
+
+roc_curve <- roc(Insurance$Claims, pred)
+plot(roc_curve, main = "ROC Curve", print.thres = "best", legacy.axes = TRUE, auc.polygon = TRUE,
+                 max.auc.polygon = TRUE, grid = TRUE, print.auc = TRUE, auc.polygon.col = "lightgray", col = "red4")
 ```
